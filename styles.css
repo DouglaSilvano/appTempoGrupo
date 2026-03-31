@@ -1,0 +1,28 @@
+.principal{
+    background-color: rgb(10, 10, 10);
+    /*display: flex;
+    
+    
+    */
+    justify-content: space-around;
+    align-items: center;
+    /*display: flex;*/
+    display: flex;
+}
+
+.quadradoCima{
+    background-color: green;
+    height: 400px;
+    width: 700px;
+    font-weight: 50;
+    
+}
+.quadradoBaixo{
+    background-color: aqua;
+    height: 400px;
+}
+.quadradoMaior{
+    background-color: red;
+    height: 800px;
+    width: 700px;
+}
