@@ -9,7 +9,7 @@ async function pegarClima() {
     
     document.getElementById("temp").innerText = data.main.temp + "°C";
     document.getElementById("desc").innerText = data.weather[0].description;
-    document.getElementsById("teste").innerText = "Cidade: " + data.name;
+    document.getElementById("teste").innerText = "Cidade: " + data.name;
 }
 
 pegarClima();
