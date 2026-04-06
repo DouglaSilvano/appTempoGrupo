@@ -15,25 +15,55 @@ async function pegarClima() {
 
 async function puxaClima_porHora(){
     lugar = document.getElementById("abc").value;
-    let texto = "";
     const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${lugar}&appid=${apiKey}&units=metric&lang=pt_br`);
     const data = await res.json();
 
-    const horarios = ["09:00:00", "12:00:00", "15:00:00", "18:00:00", "21:00:00", "00:00:00"];
-
-    const filtro = data.list.filter(item => {
-        const hora = item.dt_txt.split(" ")[1];
-        return horarios.includes(hora);
-    });
-
-    filtro.forEach(item => {
-        const hora = item.dt_txt.split(" ")[1].slice(0,5);
-        texto += `${hora} - ${item.dt_txt} - ${item.main.temp} + "ºC" - ${item.weather[0].description}\n`;
-    });
-    
-    document.getElementById("gamer").innerText = texto;
-
+    mostrarHoje(data);
 }
+
+function mostrarHoje(a){
+    const container = document.getElementById("horarios");
+    container.innerHTML = "";
+
+const hoje = new Date().toISOString().split("T")[0];
+
+const amanhaDate = new Date();
+amanhaDate.setDate(amanhaDate.getDate() + 1);
+const amanha = amanhaDate.toISOString().split("T")[0];
+
+const hojeLista = a.list.filter(item => 
+    item.dt_txt.startsWith(hoje)
+);
+
+const amanhaLista = a.list.filter(item => 
+    item.dt_txt.startsWith(amanha)
+).slice(0, 3); 
+
+const final = [...hojeLista, ...amanhaLista];
+
+const limit = final.slice(0,5);
+
+limit.forEach(item => {
+        const hora = item.dt_txt.split(" ")[1].slice(0,5);
+        const temp = item.main.temp;
+        const desc = item.weather[0].description;
+        const icon = item.weather[0].icon
+
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <section>
+            <p>${hora}</p>
+            <p>${Math.round(temp)}°C</p>
+            <p>${desc}</p>
+            <img src="https://openweathermap.org/img/wn/${icon}.png">
+            </section>`;
+
+            container.appendChild(div);
+
+    });
+}
+
 
 pegarClima();
 puxaClima_porHora();

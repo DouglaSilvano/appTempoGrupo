@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicativo Clima</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
-
-
-    
     <div class = "principal">
         <div class = "esquerda">
             <div class ="quadradoCima">
-                Quadrado menor
-    
+                    <p id="temp"></p>
+                    <p id="desc"></p>
+                    <p id="teste"></p>
+                    <input id="abc" value="Gramado,BR" type="text">
+                    <input onclick="pegarClima()" type="submit">
+                    <input onclick="puxaClima_porHora()" type="submit">
             </div>
             <div class="quadradoBaixo">
-                Quadrado menor baixo
-    
+            <div id="horarios"></div>
+                <div class= "TesteAPI">
+            <div class="Phora"></div>
             </div>
+        </div>
         </div>
     
         <div class="quadradoMaior">
@@ -32,17 +34,7 @@
 
 
 
-    <div class= "TesteAPI">
-    <p id="temp"></p>
-    <p id="desc"></p>
-    <p id="teste"></p>
-    <p id="gamer">estou aki</p>
 
-    </div>
-    <input id="abc" value="Gramado,BR" type="text">
-    <input onclick="pegarClima()" type="submit">
-    <input onclick="puxaClima_porHora()" type="submit">
-    
     <script src="codigo.js"></script>
     
 </body>
