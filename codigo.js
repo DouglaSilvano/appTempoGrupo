@@ -12,6 +12,47 @@ async function pegarClima() {
     document.getElementById("teste").innerText = "Cidade: " + data.name;
 }
 
+function dupla(){
+    pegarClima();
+    puxaClima_porHora();
+}
+
+async function busca_nome() {
+    const termoInput = document.getElementById("abc");
+    const listaContainer = document.getElementById("sugestoes");
+    const termo = termoInput.value;
+
+    if (termo.length < 3) {
+        listaContainer.innerHTML = "";
+        return;
+    }
+
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${termo}&limit=5&appid=${apiKey}`;
+
+    try {
+        const res = await fetch(url);
+        const cidades = await res.json();
+
+        listaContainer.innerHTML = ""; 
+
+        cidades.forEach(cidade => {
+            const item = document.createElement("div");
+            item.className = "sugestao-item"; 
+
+            item.innerText = `${cidade.name}${cidade.state ? `, ${cidade.state}` : ""} - ${cidade.country}`;
+
+            item.onclick = () => {
+                termoInput.value = `${cidade.name},${cidade.country}`;
+                listaContainer.innerHTML = ""; 
+                dupla(); 
+            };
+
+            listaContainer.appendChild(item); 
+        });
+    } catch (erro) {
+        console.error("Erro ao buscar cidades!!!", erro);
+    }
+}
 
 async function puxaClima_porHora(){
     lugar = document.getElementById("abc").value;
@@ -67,3 +108,5 @@ limit.forEach(item => {
 
 pegarClima();
 puxaClima_porHora();
+
+

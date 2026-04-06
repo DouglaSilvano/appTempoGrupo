@@ -13,9 +13,6 @@
                     <p id="temp"></p>
                     <p id="desc"></p>
                     <p id="teste"></p>
-                    <input id="abc" value="Gramado,BR" type="text">
-                    <input onclick="pegarClima()" type="submit">
-                    <input onclick="puxaClima_porHora()" type="submit">
             </div>
             <div class="quadradoBaixo">
             <div id="horarios"></div>
@@ -26,7 +23,12 @@
         </div>
     
         <div class="quadradoMaior">
-            Quadrado maior direita
+            <div class="div_superior">
+                <section class="pesquisa">
+                    <input id="abc" class="textinho" value="Porto Alegre,BR" oninput="busca_nome()" type="text">
+                    <div id="sugestoes"></div>
+                </section>
+            </div>
         </div>
     </div>
 
