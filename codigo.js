@@ -9,7 +9,21 @@ async function pegarClima() {
     
     document.getElementById("temp").innerText = data.main.temp + "°C";
     document.getElementById("desc").innerText = data.weather[0].description;
-    document.getElementById("teste").innerText = "Cidade: " + data.name;
+    document.getElementById("nomeCidade").innerText = "Cidade: " + data.name;
+
+   
+    const iconCode = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    
+    
+    let imgIcon = document.getElementById("clima-icone-principal");
+    if (!imgIcon) {
+        imgIcon = document.createElement("img");
+        imgIcon.id = "clima-icone-principal";
+        document.getElementById("quadradoMaior").appendChild(imgIcon); // Adiciona ao quadrado vermelho
+    }
+    imgIcon.src = iconUrl;
+    
 }
 
 
@@ -19,7 +33,7 @@ async function puxaClima_porHora(){
     const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${lugar}&appid=${apiKey}&units=metric&lang=pt_br`);
     const data = await res.json();
 
-    const horarios = ["09:00:00", "12:00:00", "15:00:00", "18:00:00", "21:00:00", "00:00:00"];
+    const horarios = ["15:00:00"];
 
     const filtro = data.list.filter(item => {
         const hora = item.dt_txt.split(" ")[1];
@@ -28,10 +42,17 @@ async function puxaClima_porHora(){
 
     filtro.forEach(item => {
         const hora = item.dt_txt.split(" ")[1].slice(0,5);
-        texto += `${hora} - ${item.dt_txt} - ${item.main.temp} + "ºC" - ${item.weather[0].description}\n`;
+        const icone = item.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${icone}@4x.png`;
+        
+        texto += `
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <img src="${iconUrl}" alt="ícone" style="width: 40px;">
+                <span>${hora} - ${item.main.temp}°C - ${item.weather[0].description}</span>
+            </div>`;
     });
     
-    document.getElementById("gamer").innerText = texto;
+    document.getElementById("gamer").innerHTML = texto;
 
 }
 
