@@ -7,9 +7,34 @@ async function pegarClima() {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${lugar}&appid=${apiKey}&units=metric&lang=pt_br`);
     const data = await res.json();
     
-    document.getElementById("temp").innerText = data.main.temp + "°C";
-    document.getElementById("desc").innerText = data.weather[0].description;
-    document.getElementById("teste").innerText = "Cidade: " + data.name;
+    const elTemp = document.getElementById("temp");
+    if (elTemp) {
+        elTemp.innerText = data.main.temp + "°C";
+    }
+
+    const elDesc = document.getElementById("desc");
+    if (elDesc) {
+        elDesc.innerText = data.weather[0].description;
+    }
+
+    const elNome = document.getElementById("nomeCidade");
+    if (elNome) {
+        elNome.innerText = "Cidade: " +data.name;
+    }
+
+   
+    const iconCode = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    
+    
+    let imgIcon = document.getElementById("clima-icone-principal");
+    if (!imgIcon) {
+        imgIcon = document.createElement("img");
+        imgIcon.id = "clima-icone-principal";
+        document.getElementById("quadradoMaior").appendChild(imgIcon); // Adiciona ao quadrado vermelho
+    }
+    imgIcon.src = iconUrl;
+    
 }
 
 
@@ -19,7 +44,7 @@ async function puxaClima_porHora(){
     const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${lugar}&appid=${apiKey}&units=metric&lang=pt_br`);
     const data = await res.json();
 
-    const horarios = ["09:00:00", "12:00:00", "15:00:00", "18:00:00", "21:00:00", "00:00:00"];
+    const horarios = ["15:00:00"];
 
     const filtro = data.list.filter(item => {
         const hora = item.dt_txt.split(" ")[1];
@@ -28,10 +53,33 @@ async function puxaClima_porHora(){
 
     filtro.forEach(item => {
         const hora = item.dt_txt.split(" ")[1].slice(0,5);
-        texto += `${hora} - ${item.dt_txt} - ${item.main.temp} + "ºC" - ${item.weather[0].description}\n`;
+        //pegando os dias e datas
+        const dataObj = new Date(item.dt_txt);
+        const diaSemana = dataObj.toLocaleDateString('pt-BR', { weekday: 'short' }).replace('.', ''); 
+        const diaMes = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+        const icone = item.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${icone}@4x.png`;
+        
+        texto += `
+            <div style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(255, 255, 255, 0.2); padding: 10px 20px; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="${iconUrl}" alt="ícone" style="width: 80px; height: 80px;">
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-size: 1.2rem; font-weight: bold; text-transform: capitalize;">${diaSemana}, ${diaMes}</span>
+                        <span style="font-size: 1rem;">${hora}</span>
+                    </div>
+                </div>
+
+                <div style="text-align: right; display: flex; flex-direction: column;">
+                    <span style="font-size: 1.5rem; font-weight: bold;">${item.main.temp.toFixed(1)}°C</span>
+                    <span style="font-size: 1rem; text-transform: capitalize;">${item.weather[0].description}</span>
+                </div>
+
+            </div>`;
     });
     
-    document.getElementById("gamer").innerText = texto;
+    document.getElementById("gamer").innerHTML = texto;
 
 }
 
