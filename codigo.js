@@ -101,9 +101,11 @@ limit.forEach(item => {
         div.innerHTML = `
             <section>
             <img class = "t" src="https://openweathermap.org/img/wn/${icon}.png">
-            <p class = "interior_horarios">${desc}</p>
-            <p class = "interior_horarios">${Math.round(temp)}°C</p>
-            <p class = "interior_horarios">${hora}</p>
+            <div class = "miniDiv">
+                <p class = "interior_horarios"  id = "desc_direita" >${desc}</p>
+                <p class = "interior_horarios" id = "temp_direita">${Math.round(temp)}°C</p>
+                <p class = "interior_horarios">${hora}</p>
+            </div>
             </section>`;
 
             container.appendChild(div);
