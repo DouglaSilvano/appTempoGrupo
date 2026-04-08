@@ -6,10 +6,16 @@ async function pegarClima() {
     
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${lugar}&appid=${apiKey}&units=metric&lang=pt_br`);
     const data = await res.json();
-    
-    document.getElementById("temp").innerText = data.main.temp + "°C";
+
+    const iconCode = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+
+    document.getElementById("nome").innerText = data.name;
+    document.getElementById("temp").innerText = Math.round(data.main.temp) + "°C";
     document.getElementById("desc").innerText = data.weather[0].description;
-    document.getElementById("teste").innerText = "Cidade: " + data.name;
+    
+    document.getElementById("icon").src = iconUrl;
+    document.getElementById("icon").alt = data.weather[0].description;
 }
 
 function dupla(){
@@ -94,10 +100,10 @@ limit.forEach(item => {
 
         div.innerHTML = `
             <section>
-            <p>${hora}</p>
-            <p>${Math.round(temp)}°C</p>
-            <p>${desc}</p>
-            <img src="https://openweathermap.org/img/wn/${icon}.png">
+            <img class = "t" src="https://openweathermap.org/img/wn/${icon}.png">
+            <p class = "interior_horarios">${desc}</p>
+            <p class = "interior_horarios">${Math.round(temp)}°C</p>
+            <p class = "interior_horarios">${hora}</p>
             </section>`;
 
             container.appendChild(div);
