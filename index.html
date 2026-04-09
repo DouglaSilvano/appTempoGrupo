@@ -3,50 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicativo Clima</title>
+    <title>Aplicativo Clima Integrado</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class = "principal">
-        <div class = "esquerda">
-            <div class ="quadradoCima">
-                    <p id="nome"></p>
-                    <img id="icon" src="" alt="Clima">            
-                    <p id="temp"></p>
-                    <p id="desc"></p>
-            </div>
+    <div class="principal">
+        
+        <div class="esquerda">
+            <p id="nomeCidade"></p>
+            <img id="icon" src="" alt="Clima" style="display: none; width: 150px;"> 
+            <p id="temp"></p>
+            <p id="desc"></p>
         </div>
 
-    
         <div class="quadradoMaior">
+            
             <div class="div_superior">
                 <section class="pesquisa">
-                    <input id="abc" class="textinho" value="Porto Alegre,BR" oninput="busca_nome()" type="text">
+                    <input id="abc" class="textinho" value="Porto Alegre,BR" oninput="busca_nome()" type="text" placeholder="Digite a cidade...">
                     <div id="sugestoes"></div>
                 </section>
             </div>
+
             <section class="direita_meio">
-                <h2>FUTURO: CLIMA DE ACORDO COM O DIA</h2>
-                
+                <h2>Previsão dos Próximos Dias</h2>
+                <div id="gamer"></div> 
             </section>
+
             <div class="direita_baixo">
-                <h2>Clima de Acordo com o Horario</h2>
-                <div class="quadradoBaixo">
-                    <div id="horarios"></div>
-                    <div class= "TesteAPI">
-                        <div class="Phora"></div>
-                    </div>
-                </div>
+                <h2>Clima por Horário</h2>
+                <div id="horarios"></div> 
             </div>
+
         </div>
     </div>
 
-
-
-
-
-
     <script src="codigo.js"></script>
-    
 </body>
 </html>
