@@ -10,9 +10,27 @@
     display: flex;
 }
 
+.texto_interno{
+    color: white;
+    text-decoration: none;
+}
+
 .quadradocima{
     justify-content: center;
     gap: 10rem;
+    height: 800px;
+}
+
+.esquerda_inferior_links{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+}
+
+#hr_esquerda{
+    margin-top: 2rem;
+    width: 10rem;
 }
 
 .esquerda{
@@ -30,6 +48,27 @@
     
 }
 
+.esquerda_inferior{
+    height: 127px;
+    margin-top: 17rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 2rem;
+    
+}
+
+.imgs{
+    display: flex;
+    gap: 1rem;
+}
+
+.imagem_git{
+    width: 30px;
+    height: 30px;
+}
 
 .quadradoMaior{
     justify-content: start;
@@ -60,6 +99,9 @@
         color: white;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    font-size: 30px;
+        margin-top: 2rem;
+
 
 }
 
