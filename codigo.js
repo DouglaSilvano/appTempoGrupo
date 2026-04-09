@@ -69,47 +69,37 @@ async function puxaClima_porHora(){
 }
 
 function mostrarHoje(a){
-    const container = document.getElementById("horarios");
-    container.innerHTML = "";
+  const container = document.getElementById("horarios");
+  container.innerHTML = "";
 
-const hoje = new Date().toISOString().split("T")[0];
+    // A API já manda a lista em ordem cronológica (a cada 3 horas).
+    // Pegamos direto os 5 próximos blocos de previsão.
+    const limit = a.list.slice(0, 5);
 
-const amanhaDate = new Date();
-amanhaDate.setDate(amanhaDate.getDate() + 1);
-const amanha = amanhaDate.toISOString().split("T")[0];
+    limit.forEach(item => {
+        // item.dt é o tempo em segundos. Multiplicamos por 1000 para virar milissegundos (padrão JS)
+        const dataLocal = new Date(item.dt * 1000); 
+        
+        // Formata a hora no padrão local automaticamente (ex: "18:00")
+        const hora = dataLocal.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
 
-const hojeLista = a.list.filter(item => 
-    item.dt_txt.startsWith(hoje)
-);
-
-const amanhaLista = a.list.filter(item => 
-    item.dt_txt.startsWith(amanha)
-).slice(0, 3); 
-
-const final = [...hojeLista, ...amanhaLista];
-
-const limit = final.slice(0,5);
-
-limit.forEach(item => {
-        const hora = item.dt_txt.split(" ")[1].slice(0,5);
         const temp = item.main.temp;
         const desc = item.weather[0].description;
-        const icon = item.weather[0].icon
+        const icon = item.weather[0].icon;
 
         const div = document.createElement("div");
 
         div.innerHTML = `
-            <section>
-            <img class = "t" src="https://openweathermap.org/img/wn/${icon}.png">
-            <div class = "miniDiv">
-                <p class = "interior_horarios"  id = "desc_direita" >${desc}</p>
-                <p class = "interior_horarios" id = "temp_direita">${Math.round(temp)}°C</p>
-                <p class = "interior_horarios">${hora}</p>
-            </div>
-            </section>`;
+        <section>
+        <img class="t" src="https://openweathermap.org/img/wn/${icon}.png">
+        <div class="miniDiv">
+            <p class="interior_horarios" id="desc_direita">${desc}</p>
+            <p class="interior_horarios" id="temp_direita">${Math.round(temp)}°C</p>
+            <p class="interior_horarios">${hora}</p>
+        </div>
+        </section>`;
 
-            container.appendChild(div);
-
+    container.appendChild(div);
     });
 }
 
