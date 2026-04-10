@@ -1,6 +1,6 @@
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -10,85 +10,142 @@ body {
 
 .principal {
     display: flex;
-    justify-content: space-between;
     height: 100vh;
 }
 
-/* Painel Esquerdo */
+/* --- LADO ESQUERDO --- */
 .esquerda {
-    background-color: #2D2A54;
     width: 35%;
+    background-color: #2D2A54;
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 40px 20px;
     text-align: center;
-    padding: 2rem;
 }
 
-#nomeCidade {
-    font-size: 4rem;
+.esquerda_superior {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nome {
+    font-size: 3rem;
     font-weight: bold;
-    color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #temp {
-    font-size: 5rem;
-    color: white;
+    font-size: 4.5rem;
     font-weight: bold;
-    margin-top: -10px;
+    margin: 10px 0;
 }
 
 #desc {
     font-size: 1.5rem;
-    color: #D7D8F0;
     text-transform: capitalize;
-    margin-top: 10px;
+    color: #D7D8F0;
 }
 
-/* Painel Direito */
+.linha-divisoria {
+    width: 80%;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+}
+
+/* Links e Imagens Github */
+.esquerda_inferior {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.esquerda_inferior_links {
+    display: flex;
+    gap: 30px;
+}
+
+.texto_interno {
+    color: #D7D8F0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.texto_interno:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.imgs {
+    display: flex;
+    gap: 20px;
+}
+
+.imagem_git {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.imagem_git:hover {
+    transform: scale(1.1); /* Dá um zoom massa quando passa o mouse */
+}
+
+
+/* --- LADO DIREITO --- */
 .quadradoMaior {
     width: 65%;
     background-color: #D7D8F0;
-    padding: 30px;
+    padding: 40px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
 
-/* Pesquisa e Sugestões */
+h2 {
+    font-size: 1.5rem;
+    color: #2D2A54;
+    margin-bottom: 15px;
+}
+
+/* Pesquisa e Autocomplete */
 .div_superior {
-    position: relative;
-    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .pesquisa {
-    position: relative;
     width: 100%;
     max-width: 600px;
+    position: relative;
 }
 
 #abc {
-    height: 3.5rem;
     width: 100%;
-    font-size: 1.2rem;
-    padding-left: 15px;
+    height: 50px;
     border: none;
     border-radius: 8px;
+    padding: 0 20px;
+    font-size: 1.2rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 #sugestoes {
     position: absolute;
-    top: 60px;
+    top: 55px;
     width: 100%;
-    background: #fff;
+    background: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     z-index: 10;
@@ -97,40 +154,26 @@ body {
 .sugestao-item {
     padding: 15px;
     cursor: pointer;
-    font-size: 1rem;
     border-bottom: 1px solid #eee;
 }
 
 .sugestao-item:hover {
-    background-color: #e9e9e9;
+    background-color: #f0f0f0;
 }
 
-/* Títulos da Direita */
-h2 {
-    color: #2D2A54;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-/* Cards do Meio (Futuro) e Baixo (Horários) */
+/* Cards (Futuro Diário) */
 .direita_meio {
     margin-bottom: 30px;
 }
 
-#horarios {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    padding-bottom: 15px;
-}
 .card-previsao {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.08); 
-    padding: 15px 20px;
-    margin-bottom: 15px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 15px 25px;
     border-radius: 12px;
+    margin-bottom: 15px;
     color: #2D2A54;
 }
 
@@ -158,6 +201,7 @@ h2 {
 
 .card-hora {
     font-size: 1rem;
+    color: #555;
 }
 
 .card-previsao-direita {
@@ -172,6 +216,49 @@ h2 {
 }
 
 .card-desc {
-    font-size: 1rem;
     text-transform: capitalize;
+}
+
+/* Bloquinhos (Horários) */
+#horarios {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+
+.bloco-horario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #373374;
+    color: white;
+    min-width: 140px;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.bloco-horario img {
+    width: 70px;
+    margin-bottom: 5px;
+}
+
+.bloco-desc {
+    font-size: 14px;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.bloco-temp {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bloco-hora {
+    font-size: 16px;
+    color: #ccc;
 }
