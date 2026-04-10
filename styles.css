@@ -3,11 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/* Fonte padrão tudo */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+/* Divide a tela em dois lados lado a lado */
 .principal {
     display: flex;
     height: 100vh;
