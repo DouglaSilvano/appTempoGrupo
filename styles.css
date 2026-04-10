@@ -1,57 +1,264 @@
-.principal{
-    background-color: rgb(10, 10, 10);
-    /*display: flex;
-    
-    
-    */
-    justify-content: space-around;
-    align-items: center;
-    /*display: flex;*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Fonte padrão tudo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Divide a tela em dois lados lado a lado */
+.principal {
     display: flex;
+    height: 100vh;
 }
 
-.quadradoCima{
-    background-color: green;
-    height: 400px;
-    width: 700px;
-    font-weight: 50;
-    
+/* --- LADO ESQUERDO --- */
+.esquerda {
+    width: 35%;
+    background-color: #2D2A54;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
 }
-.quadradoBaixo{
-    background-color: aqua;
-    height: 400px;
+
+.esquerda_superior {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.quadradoMaior{
-    padding: 30px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    background-color: aquamarine;
-    font-size: 40px;
-    /*height: 800px;
-    width: 700px;*/
-    height: 100vh;
-    width: auto;
-}
-#gamer img {
-    display: block;
-    width: 100px !important;
-    height: auto;
-    image-rendering: pixelated;
-}
-#temp {
+
+#nome {
     font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+#temp {
+    font-size: 4.5rem;
     font-weight: bold;
     margin: 10px 0;
 }
-#nomeCidade {
-    font-size: 2rem;               
-    font-weight: bold;             
-    color: white;                  
-    text-align: center;            
-    margin-top: 20px;              
-    margin-bottom: 30px;           
-    text-transform: initial;    
-    
-    
-    
+
+#desc {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: #D7D8F0;
+}
+
+.linha-divisoria {
+    width: 80%;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+}
+
+/* Links e Imagens Github */
+.esquerda_inferior {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.esquerda_inferior_links {
+    display: flex;
+    gap: 30px;
+}
+
+.texto_interno {
+    color: #D7D8F0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.texto_interno:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.imgs {
+    display: flex;
+    gap: 20px;
+}
+
+.imagem_git {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.imagem_git:hover {
+    transform: scale(1.1); /* Dá um zoom massa quando passa o mouse */
+}
+
+
+/* --- LADO DIREITO --- */
+.quadradoMaior {
+    width: 65%;
+    background-color: #D7D8F0;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #2D2A54;
+    margin-bottom: 15px;
+}
+
+/* Pesquisa e Autocomplete */
+.div_superior {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.pesquisa {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+#abc {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#sugestoes {
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.sugestao-item {
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.sugestao-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Cards (Futuro Diário) */
+.direita_meio {
+    margin-bottom: 30px;
+}
+
+.card-previsao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 15px 25px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    color: #2D2A54;
+}
+
+.card-previsao-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-icone {
+    width: 70px;
+    height: 70px;
+}
+
+.card-textos {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-data {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.card-hora {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card-previsao-direita {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-temp {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-desc {
+    text-transform: capitalize;
+}
+
+/* Bloquinhos (Horários) */
+#horarios {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+}
+
+.bloco-horario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #373374;
+    color: white;
+    min-width: 140px;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.bloco-horario img {
+    width: 70px;
+    margin-bottom: 5px;
+}
+
+.bloco-desc {
+    font-size: 14px;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.bloco-temp {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bloco-hora {
+    font-size: 16px;
+    color: #ccc;
 }
