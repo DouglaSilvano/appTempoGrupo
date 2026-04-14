@@ -20,7 +20,7 @@ Projeto feito em grupo durante o grupo de estudos da Preto no Branco pra puxar a
 2. Abre o `index.html` no navegador.
 3. Utilizar o programa
 
-## A Firma
+## Colaboradores
 
 Código feito, testado e comentado por:
 * [João Pedro Goz](https://github.com/JoaoPedroGoz)
